@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 PWD = $(shell pwd)
 
 VLC_LUA_DIR_1 = /usr/lib/vlc/lua
