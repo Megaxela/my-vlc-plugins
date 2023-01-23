@@ -101,7 +101,7 @@ end
 
 -- Parse function.
 function parse()
-   vlc.msg.dbg("[yamusic] Start executing YaMusic parse function ")
+   vlc.msg.info("[yamusic] Start executing YaMusic parse function (v1.0)")
 
    line_iter = os.capture(
       string.format('python3 %s/yamusic.py %s', script_path(), vlc.path),
@@ -125,7 +125,7 @@ function parse()
    -- Parse multiple items
    vlc.msg.dbg(string.format("[yamusic] Detected some sort of playlist: %s", vlc.path))
    result = {}
-   iterator = 0
+   iterator = 1
 
    ctx = {}
    for line in line_iter do
