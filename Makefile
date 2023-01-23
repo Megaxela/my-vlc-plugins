@@ -1,7 +1,7 @@
 PWD = $(shell pwd)
 
-VLC_LUA_DIR = /usr/lib/vlc/lua
-VLC_LUA_PLAYLIST_DIR = $(VLC_LUA_DIR)/playlist
+VLC_LUA_DIR_1 = /usr/lib/vlc/lua
+VLC_LUA_DIR_2 = /usr/lib/aarch64-linux-gnu/vlc/lua
 
 # Execute all sequenced jobs on single shell
 .ONESHELL:
@@ -10,6 +10,17 @@ VLC_LUA_PLAYLIST_DIR = $(VLC_LUA_DIR)/playlist
 install:
 
 install-symlinks:
+	@if [[ -e "$(VLC_LUA_DIR_1)" ]]; then
+		VLC_LUA_DIR="$(VLC_LUA_DIR_1)"
+	@elif [[ -e "$(VLC_LUA_DIR_2)" ]]; then
+		VLC_LUA_DIR="$(VLC_LUA_DIR_2)"
+	@else
+		@echo "Unable to find VLC plugin directory"
+		@exit 1
+	@fi
+
+	VLC_LUA_PLAYLIST_DIR=$(VLC_LUA_DIR)/playlist
+
 	@echo "Removing old plugins"
 	@rm -f "$(VLC_LUA_PLAYLIST_DIR)/youtube.luac" > /dev/null 2>&1
 
