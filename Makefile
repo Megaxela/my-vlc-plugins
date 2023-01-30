@@ -30,7 +30,7 @@ install-symlinks:
 	@for item in `find vlc/playlist/ | grep \.lua | xargs -I{} basename {}`; do
 		@if [[ ! -e "$$VLC_LUA_PLAYLIST_DIR/$$item" ]]; then
 			@echo "Creating symlink for '$$item'"
-			@ln -s "$(PWD)/vlc/playlist/$$item" "$(VLC_LUA_PLAYLIST_DIR)/$$item"
+			@ln -s "$(PWD)/vlc/playlist/$$item" "$$VLC_LUA_PLAYLIST_DIR/$$item"
 		@else
 			@echo "Symlink for '$$item' already exists"
 		@fi
