@@ -127,7 +127,7 @@ function parse()
    for line in line_iter do
       key_value = parse_script_line(line)
 
-      if (update_context(ctx, key, value))
+      if (update_context(ctx, key, value)) then
          result[iterator] = context_to_track(ctx)
          iterator = iterator + 1
       end
